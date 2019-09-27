@@ -25,15 +25,17 @@ Route::post('events/get','EventController@getEventsOnDate');
 Route::post('events/delete', 'EventController@deleteEvent');
 Route::post('events/edit', 'EventController@editEvent');
 
-Route::group([
+Route::post('login', 'AuthController@login');
 
-    'middleware' => 'api',
+// Route::group([
+
+//     'middleware' => 'api',
     
-], function ($router) {
+// ], function ($router) {
 
-    Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
+//     Route::post('login', 'AuthController@login');
+//     Route::post('logout', 'AuthController@logout');
+//     Route::post('refresh', 'AuthController@refresh');
+//     Route::post('me', 'AuthController@me');
 
-});
+// });
