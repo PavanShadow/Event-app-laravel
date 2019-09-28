@@ -41,9 +41,9 @@ class EventController extends Controller
     public function editEvent(Request $request)
     {   
         $id = $request->input('id');
-        $event = Event::find($id);
+        $event = Event::find($id)->get();
 
-        return response()->json($event);
+        return $event;
         
         
     }
