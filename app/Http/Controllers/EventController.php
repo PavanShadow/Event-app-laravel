@@ -22,6 +22,12 @@ class EventController extends Controller
         ));
     }
 
+    public function getAll()
+    {
+        $events = Event::all();
+        return $events;
+    }
+
     public function getEventsOnDate(Request $request)
     {
         $date = $request->post('date');
@@ -40,10 +46,19 @@ class EventController extends Controller
 
     public function editEvent(Request $request)
     {   
-        $id = $request->input('id');
-        $event = Event::find($id)->get();
+        $id = $request->post('id');
+        $event = Event::findOrFail($id);
 
-        return $event;
+        $event->title = $request->title;
+        $event->start = $request->start;
+        $event->end = $request->end;
+        $event->save();
+
+        return response()->json(
+            array(
+                'success'=> true
+            )
+        );
         
         
     }
